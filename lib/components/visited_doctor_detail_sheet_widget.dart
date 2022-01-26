@@ -443,9 +443,16 @@ class _VisitedDoctorDetailSheetWidgetState
                                                               MediaQuery.of(
                                                                       context)
                                                                   .viewInsets,
-                                                          child:
-                                                              QuantityAdderWidget(
-                                                            name: popsItem,
+                                                          child: Container(
+                                                            height: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .height *
+                                                                0.4,
+                                                            child:
+                                                                QuantityAdderWidget(
+                                                              name: popsItem,
+                                                            ),
                                                           ),
                                                         );
                                                       },

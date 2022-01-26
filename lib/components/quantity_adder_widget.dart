@@ -32,7 +32,8 @@ class _QuantityAdderWidgetState extends State<QuantityAdderWidget> {
     return Form(
       key: formKey,
       child: Container(
-        width: double.infinity,
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height * 1,
         decoration: BoxDecoration(
           color: Colors.white,
         ),
