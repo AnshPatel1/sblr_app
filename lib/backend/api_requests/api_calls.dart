@@ -13,7 +13,7 @@ class LoginAuthCall {
     return ApiManager.instance.makeApiCall(
       callName: 'loginAuth',
       apiUrl:
-          'https://appearing-keep-liechtenstein-specification.trycloudflare.com/api/app/login',
+          'https://villas-writing-latino-jungle.trycloudflare.com/api/app/login',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -33,7 +33,7 @@ class GetDoctorsCall {
     return ApiManager.instance.makeApiCall(
       callName: 'getDoctors',
       apiUrl:
-          'https://appearing-keep-liechtenstein-specification.trycloudflare.com/api/msos/doctors',
+          'https://villas-writing-latino-jungle.trycloudflare.com/api/msos/doctors',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -56,7 +56,7 @@ class GetChemistsCall {
     return ApiManager.instance.makeApiCall(
       callName: 'getChemists',
       apiUrl:
-          'https://appearing-keep-liechtenstein-specification.trycloudflare.com/api/msos/chemists',
+          'https://villas-writing-latino-jungle.trycloudflare.com/api/msos/chemists',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -79,7 +79,7 @@ class GetARCsCall {
     return ApiManager.instance.makeApiCall(
       callName: 'getARCs',
       apiUrl:
-          'https://appearing-keep-liechtenstein-specification.trycloudflare.com/api/msos/arcs',
+          'https://villas-writing-latino-jungle.trycloudflare.com/api/msos/arcs',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -102,7 +102,7 @@ class GetStockistsCall {
     return ApiManager.instance.makeApiCall(
       callName: 'getStockists',
       apiUrl:
-          'https://appearing-keep-liechtenstein-specification.trycloudflare.com/api/msos/stockists',
+          'https://villas-writing-latino-jungle.trycloudflare.com/api/msos/stockists',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -123,7 +123,7 @@ class GetSamplesCall {
     return ApiManager.instance.makeApiCall(
       callName: 'getSamples',
       apiUrl:
-          'https://appearing-keep-liechtenstein-specification.trycloudflare.com/api/samples',
+          'https://villas-writing-latino-jungle.trycloudflare.com/api/samples',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -141,8 +141,7 @@ class GetPOPsCall {
   static Future<ApiCallResponse> call() {
     return ApiManager.instance.makeApiCall(
       callName: 'getPOPs',
-      apiUrl:
-          'https://appearing-keep-liechtenstein-specification.trycloudflare.com/api/pops',
+      apiUrl: 'https://villas-writing-latino-jungle.trycloudflare.com/api/pops',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
