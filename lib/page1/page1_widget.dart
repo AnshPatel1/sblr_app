@@ -32,6 +32,8 @@ class _Page1WidgetState extends State<Page1Widget> {
 
   @override
   Widget build(BuildContext context) {
+    DateTime _firstDate = new DateTime(
+    DateTime.now().year, DateTime.now().month, DateTime.now().day - 3);
     return FutureBuilder<ApiCallResponse>(
       future: LoginAuthCall.call(
         username: widget.username,
@@ -180,7 +182,8 @@ class _Page1WidgetState extends State<Page1Widget> {
                                           setState(() => datePicked = date);
                                         },
                                         currentTime: getCurrentTimestamp,
-                                        minTime: getCurrentTimestamp,
+                                        minTime: _firstDate,
+                                        maxTime: getCurrentTimestamp,
                                       );
                                     },
                                   ),
