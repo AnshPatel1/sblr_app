@@ -215,7 +215,7 @@ class _VisitedDoctorDetailSheetWidgetState
                                                               0.4,
                                                           child:
                                                               QuantityAdderWidget(
-                                                            name: popsItem,
+                                                            name: samplesItem,
                                                           ),
                                                         ),
                                                       );
