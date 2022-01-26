@@ -29,6 +29,8 @@ class FFAppState {
   List<String> connectedDoctorSample = [];
 
   List<String> connectedDoctorPop = [];
+
+  List<String> connectedDoctorBooking = [];
 }
 
 LatLng _latLngFromString(String val) {
