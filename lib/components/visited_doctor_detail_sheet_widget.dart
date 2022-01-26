@@ -182,11 +182,6 @@ class _VisitedDoctorDetailSheetWidgetState
                                           .connectedDoctorSample
                                           ?.toList() ??
                                       [];
-                                  if (samples.isEmpty) {
-                                    return Image.network(
-                                      '',
-                                    );
-                                  }
                                   return ListView.builder(
                                     padding: EdgeInsets.zero,
                                     scrollDirection: Axis.vertical,
@@ -399,11 +394,6 @@ class _VisitedDoctorDetailSheetWidgetState
                                           .connectedDoctorPop
                                           ?.toList() ??
                                       [];
-                                  if (pops.isEmpty) {
-                                    return Image.network(
-                                      '',
-                                    );
-                                  }
                                   return ListView.builder(
                                     padding: EdgeInsets.zero,
                                     scrollDirection: Axis.vertical,
