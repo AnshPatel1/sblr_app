@@ -172,6 +172,7 @@ class _VisitedDoctorDetailSheetWidgetState
                                     [];
                                 return ListView.builder(
                                   padding: EdgeInsets.zero,
+                                  shrinkWrap: true,
                                   scrollDirection: Axis.vertical,
                                   itemCount: samples.length,
                                   itemBuilder: (context, samplesIndex) {
@@ -359,6 +360,7 @@ class _VisitedDoctorDetailSheetWidgetState
                                         [];
                                 return ListView.builder(
                                   padding: EdgeInsets.zero,
+                                  shrinkWrap: true,
                                   scrollDirection: Axis.vertical,
                                   itemCount: pops.length,
                                   itemBuilder: (context, popsIndex) {
