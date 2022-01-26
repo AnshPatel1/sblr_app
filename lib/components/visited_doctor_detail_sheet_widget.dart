@@ -26,7 +26,8 @@ class VisitedDoctorDetailSheetWidget extends StatefulWidget {
 class _VisitedDoctorDetailSheetWidgetState
     extends State<VisitedDoctorDetailSheetWidget> {
   String dropDownSampleValue;
-  String pOPDropdownValue;
+  String pOPDropdownValue1;
+  String pOPDropdownValue2;
 
   @override
   Widget build(BuildContext context) {
@@ -160,7 +161,6 @@ class _VisitedDoctorDetailSheetWidgetState
                           ),
                           Container(
                             width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height * 0.5,
                             decoration: BoxDecoration(
                               color: Color(0xFFEEEEEE),
                             ),
@@ -172,6 +172,7 @@ class _VisitedDoctorDetailSheetWidgetState
                                     [];
                                 return ListView.builder(
                                   padding: EdgeInsets.zero,
+                                  shrinkWrap: true,
                                   scrollDirection: Axis.vertical,
                                   itemCount: samples.length,
                                   itemBuilder: (context, samplesIndex) {
@@ -301,7 +302,7 @@ class _VisitedDoctorDetailSheetWidgetState
                                           .toList()
                                           .toList(),
                                       onChanged: (val) => setState(
-                                          () => pOPDropdownValue = val),
+                                          () => pOPDropdownValue1 = val),
                                       width: MediaQuery.of(context).size.width *
                                           0.8,
                                       height: 50,
@@ -338,7 +339,7 @@ class _VisitedDoctorDetailSheetWidgetState
                                       onPressed: () async {
                                         setState(() => FFAppState()
                                             .connectedDoctorPop
-                                            .add(pOPDropdownValue));
+                                            .add(pOPDropdownValue1));
                                       },
                                     ),
                                   ],
@@ -348,7 +349,6 @@ class _VisitedDoctorDetailSheetWidgetState
                           ),
                           Container(
                             width: MediaQuery.of(context).size.width,
-                            height: MediaQuery.of(context).size.height * 0.5,
                             decoration: BoxDecoration(
                               color: Color(0xFFEEEEEE),
                             ),
@@ -359,6 +359,7 @@ class _VisitedDoctorDetailSheetWidgetState
                                         [];
                                 return ListView.builder(
                                   padding: EdgeInsets.zero,
+                                  shrinkWrap: true,
                                   scrollDirection: Axis.vertical,
                                   itemCount: pops.length,
                                   itemBuilder: (context, popsIndex) {
@@ -443,6 +444,180 @@ class _VisitedDoctorDetailSheetWidgetState
                     ],
                   ),
                 ),
+              ),
+              Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Align(
+                    alignment: AlignmentDirectional(-1, 0),
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
+                      child: Text(
+                        'Select Products booked:',
+                        style: FlutterFlowTheme.bodyText1,
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                    child: FutureBuilder<ApiCallResponse>(
+                      future: GetProductsCall.call(),
+                      builder: (context, snapshot) {
+                        // Customize what your widget looks like when it's loading.
+                        if (!snapshot.hasData) {
+                          return Center(
+                            child: SizedBox(
+                              width: 50,
+                              height: 50,
+                              child: CircularProgressIndicator(
+                                color: FlutterFlowTheme.primaryColor,
+                              ),
+                            ),
+                          );
+                        }
+                        final rowGetProductsResponse = snapshot.data;
+                        return Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            FlutterFlowDropDown(
+                              options: GetProductsCall.names(
+                                (rowGetProductsResponse?.jsonBody ?? ''),
+                              )
+                                  .map<String>((s) => s.toString())
+                                  .toList()
+                                  .toList(),
+                              onChanged: (val) =>
+                                  setState(() => pOPDropdownValue2 = val),
+                              width: MediaQuery.of(context).size.width * 0.8,
+                              height: 50,
+                              textStyle: FlutterFlowTheme.bodyText1.override(
+                                fontFamily: 'Poppins',
+                                color: Colors.black,
+                              ),
+                              hintText: 'Please select...',
+                              icon: Icon(
+                                Icons.keyboard_arrow_down,
+                                color: Color(0xFF2143A0),
+                                size: 15,
+                              ),
+                              fillColor: Colors.white,
+                              elevation: 2,
+                              borderColor: Color(0xFF2143A0),
+                              borderWidth: 1,
+                              borderRadius: 25,
+                              margin:
+                                  EdgeInsetsDirectional.fromSTEB(12, 4, 12, 4),
+                              hidesUnderline: true,
+                            ),
+                            FlutterFlowIconButton(
+                              borderColor: Colors.transparent,
+                              borderRadius: 30,
+                              borderWidth: 1,
+                              buttonSize: 40,
+                              icon: Icon(
+                                Icons.add,
+                                color: Color(0xFF2143A0),
+                                size: 25,
+                              ),
+                              onPressed: () async {
+                                setState(() => FFAppState()
+                                    .connectedDoctorBooking
+                                    .add(pOPDropdownValue2));
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    ),
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      color: Color(0xFFEEEEEE),
+                    ),
+                    child: Builder(
+                      builder: (context) {
+                        final booking =
+                            FFAppState().connectedDoctorBooking?.toList() ?? [];
+                        return ListView.builder(
+                          padding: EdgeInsets.zero,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.vertical,
+                          itemCount: booking.length,
+                          itemBuilder: (context, bookingIndex) {
+                            final bookingItem = booking[bookingIndex];
+                            return Container(
+                              decoration: BoxDecoration(
+                                color: Color(0xFFEEEEEE),
+                              ),
+                              child: Align(
+                                alignment: AlignmentDirectional(1, 0),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 7, 0, 7),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      AutoSizeText(
+                                        bookingItem.maybeHandleOverflow(
+                                            maxChars: 20),
+                                        style: FlutterFlowTheme.bodyText1,
+                                      ),
+                                      FFButtonWidget(
+                                        onPressed: () async {
+                                          await showModalBottomSheet(
+                                            isScrollControlled: true,
+                                            context: context,
+                                            builder: (context) {
+                                              return Padding(
+                                                padding: MediaQuery.of(context)
+                                                    .viewInsets,
+                                                child: Container(
+                                                  height: MediaQuery.of(context)
+                                                          .size
+                                                          .height *
+                                                      0.4,
+                                                  child: QuantityAdderWidget(
+                                                    name: bookingItem,
+                                                  ),
+                                                ),
+                                              );
+                                            },
+                                          );
+                                        },
+                                        text: 'set qty',
+                                        options: FFButtonOptions(
+                                          width: 80,
+                                          height: 40,
+                                          color: FlutterFlowTheme.primaryColor,
+                                          textStyle: FlutterFlowTheme.subtitle2
+                                              .override(
+                                            fontFamily: 'Poppins',
+                                            color: Colors.white,
+                                          ),
+                                          borderSide: BorderSide(
+                                            color: Colors.transparent,
+                                            width: 1,
+                                          ),
+                                          borderRadius: 12,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ],
               ),
               FFButtonWidget(
                 onPressed: () async {

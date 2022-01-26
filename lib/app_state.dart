@@ -31,7 +31,7 @@ class FFAppState {
 
   List<String> connectedDoctorPop = [];
 
-  List<Current_day_doctor> currentDayDoctors = [];
+
 }
 
 LatLng _latLngFromString(String val) {

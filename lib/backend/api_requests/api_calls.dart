@@ -154,3 +154,34 @@ class GetPOPsCall {
         r'''..name''',
       );
 }
+
+class GetProductsCall {
+  static Future<ApiCallResponse> call() {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getProducts',
+      apiUrl:
+          'https://villas-writing-latino-jungle.trycloudflare.com/api/products',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {},
+      returnBody: true,
+    );
+  }
+
+  static dynamic names(dynamic response) => getJsonField(
+        response,
+        r'''$[0:]name''',
+      );
+  static dynamic id(dynamic response) => getJsonField(
+        response,
+        r'''$[0:]pk''',
+      );
+  static dynamic type(dynamic response) => getJsonField(
+        response,
+        r'''$[0:]type''',
+      );
+  static dynamic size(dynamic response) => getJsonField(
+        response,
+        r'''$[0:]size''',
+      );
+}
