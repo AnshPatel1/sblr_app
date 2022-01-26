@@ -31,7 +31,7 @@ class _VisitedDoctorDetailSheetWidgetState
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+      padding: EdgeInsetsDirectional.fromSTEB(10, 40, 10, 10),
       child: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height * 1,
