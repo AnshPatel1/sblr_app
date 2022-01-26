@@ -268,8 +268,10 @@ class _Page2WidgetState extends State<Page2Widget> {
                                           color: Color(0xFFE75E5E),
                                           size: 25,
                                         ),
-                                        onPressed: () {
-                                          print('IconButton pressed ...');
+                                        onPressed: () async {
+                                          setState(() => FFAppState()
+                                              .selectedDoctors
+                                              .remove(selectedDoctorsItem));
                                         },
                                       ),
                                       FlutterFlowIconButton(
