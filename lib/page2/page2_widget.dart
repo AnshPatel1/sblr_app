@@ -5,6 +5,7 @@ import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
+import '../page3/page3_widget.dart';
 import '../custom_code/actions/index.dart' as actions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +54,7 @@ class _Page2WidgetState extends State<Page2Widget> {
           key: scaffoldKey,
           appBar: AppBar(
             backgroundColor: Color(0xFF2DA17C),
-            automaticallyImplyLeading: false,
+            automaticallyImplyLeading: true,
             title: Text(
               'Page 2',
               style: FlutterFlowTheme.title2.override(
@@ -83,8 +84,17 @@ class _Page2WidgetState extends State<Page2Widget> {
           ),
           backgroundColor: Color(0xFFF5F5F5),
           floatingActionButton: FloatingActionButton.extended(
-            onPressed: () {
-              print('FloatingActionButton pressed ...');
+            onPressed: () async {
+              await actions.logDoctor();
+              await Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Page3Widget(
+                    username: widget.username,
+                    password: widget.password,
+                  ),
+                ),
+              );
             },
             backgroundColor: Color(0xFF13372C),
             icon: Icon(

@@ -94,6 +94,8 @@ class _Page1WidgetState extends State<Page1Widget> {
           backgroundColor: Color(0xFFF5F5F5),
           floatingActionButton: FloatingActionButton.extended(
             onPressed: () async {
+              setState(() =>
+                  FFAppState().repDate = dateTimeFormat('d/M/y', datePicked));
               await Navigator.push(
                 context,
                 MaterialPageRoute(

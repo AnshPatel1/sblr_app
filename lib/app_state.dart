@@ -61,6 +61,12 @@ class FFAppState {
     _persistedExample.remove(_value);
     prefs.setStringList('ff_persistedExample', _persistedExample);
   }
+
+  String repDate = '';
+
+  String summaryText = '';
+
+  int totalBooking = 0;
 }
 
 LatLng _latLngFromString(String val) {

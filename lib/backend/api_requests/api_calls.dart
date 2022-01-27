@@ -178,3 +178,32 @@ class GetProductsCall {
         r'''$[0:]size''',
       );
 }
+
+class LogReportCall {
+  static Future<ApiCallResponse> call({
+    int msoId,
+    String date = '',
+    String data = '',
+  }) {
+    final body = '''
+{
+  "mso": ${msoId},
+  "date": "${date}",
+  "data": "${data}"
+}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'logReport',
+      apiUrl: 'http://127.0.0.1:8000/api/sblrs',
+      callType: ApiCallType.POST,
+      headers: {},
+      params: {
+        'msoId': msoId,
+        'date': date,
+        'data': data,
+      },
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+    );
+  }
+}
