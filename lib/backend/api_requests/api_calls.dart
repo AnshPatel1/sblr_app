@@ -63,7 +63,7 @@ class GetChemistsCall {
     );
   }
 
-  static dynamic chemists(dynamic response) => getJsonField(
+  static dynamic name(dynamic response) => getJsonField(
         response,
         r'''..name''',
       );

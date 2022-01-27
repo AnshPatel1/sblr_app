@@ -1,5 +1,5 @@
 import '../backend/api_requests/api_calls.dart';
-import '../components/visited_doctor_detail_sheet_widget.dart';
+import '../components/visited_chemist_detail_sheet_widget.dart';
 import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
@@ -10,8 +10,8 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Page2Widget extends StatefulWidget {
-  const Page2Widget({
+class Page3Widget extends StatefulWidget {
+  const Page3Widget({
     Key key,
     this.username,
     this.password,
@@ -21,10 +21,10 @@ class Page2Widget extends StatefulWidget {
   final String password;
 
   @override
-  _Page2WidgetState createState() => _Page2WidgetState();
+  _Page3WidgetState createState() => _Page3WidgetState();
 }
 
-class _Page2WidgetState extends State<Page2Widget> {
+class _Page3WidgetState extends State<Page3Widget> {
   String dropDownValue;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -48,14 +48,14 @@ class _Page2WidgetState extends State<Page2Widget> {
             ),
           );
         }
-        final page2LoginAuthResponse = snapshot.data;
+        final page3LoginAuthResponse = snapshot.data;
         return Scaffold(
           key: scaffoldKey,
           appBar: AppBar(
             backgroundColor: Color(0xFF2DA17C),
             automaticallyImplyLeading: false,
             title: Text(
-              'Page 2',
+              'Page 3',
               style: FlutterFlowTheme.title2.override(
                 fontFamily: 'Poppins',
                 color: Color(0xFFDCDCDC),
@@ -106,7 +106,7 @@ class _Page2WidgetState extends State<Page2Widget> {
                     Padding(
                       padding: EdgeInsetsDirectional.fromSTEB(10, 15, 0, 0),
                       child: Text(
-                        'Add doctors visited (if any):',
+                        'Add Chemists visited (if any):',
                         style: FlutterFlowTheme.title3.override(
                           fontFamily: 'Poppins',
                           fontWeight: FontWeight.normal,
@@ -121,91 +121,117 @@ class _Page2WidgetState extends State<Page2Widget> {
                         decoration: BoxDecoration(
                           color: Color(0x00EEEEEE),
                         ),
-                        child: SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(10, 0, 0, 0),
-                                child: FutureBuilder<ApiCallResponse>(
-                                  future: GetDoctorsCall.call(
-                                    id: getJsonField(
-                                      (page2LoginAuthResponse?.jsonBody ?? ''),
-                                      r'''$pk''',
-                                    ).toString(),
-                                  ),
-                                  builder: (context, snapshot) {
-                                    // Customize what your widget looks like when it's loading.
-                                    if (!snapshot.hasData) {
-                                      return Center(
-                                        child: SizedBox(
-                                          width: 50,
-                                          height: 50,
-                                          child: CircularProgressIndicator(
-                                            color:
-                                                FlutterFlowTheme.primaryColor,
-                                          ),
-                                        ),
-                                      );
-                                    }
-                                    final dropDownGetDoctorsResponse =
-                                        snapshot.data;
-                                    return FlutterFlowDropDown(
-                                      options: getJsonField(
-                                        (dropDownGetDoctorsResponse?.jsonBody ??
-                                            ''),
-                                        r'''..name''',
-                                      )
-                                          .map<String>((s) => s.toString())
-                                          .toList()
-                                          .toList(),
-                                      onChanged: (val) =>
-                                          setState(() => dropDownValue = val),
-                                      width: MediaQuery.of(context).size.width *
-                                          0.8,
-                                      height: 50,
-                                      textStyle:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
-                                        color: Colors.black,
-                                      ),
-                                      hintText: 'Please select...',
-                                      icon: Icon(
-                                        Icons.keyboard_arrow_down,
-                                        size: 15,
-                                      ),
-                                      fillColor: Colors.white,
-                                      elevation: 2,
-                                      borderColor: Color(0xFF0C4534),
-                                      borderWidth: 1,
-                                      borderRadius: 25,
-                                      margin: EdgeInsetsDirectional.fromSTEB(
-                                          12, 4, 12, 4),
-                                      hidesUnderline: true,
-                                    );
-                                  },
-                                ),
-                              ),
-                              FlutterFlowIconButton(
-                                borderColor: Colors.transparent,
-                                borderRadius: 30,
-                                borderWidth: 1,
-                                buttonSize: 60,
-                                icon: Icon(
-                                  Icons.add_rounded,
-                                  color: Color(0xFF13372C),
-                                  size: 35,
-                                ),
-                                onPressed: () async {
-                                  setState(() => FFAppState()
-                                      .selectedDoctors
-                                      .add(dropDownValue));
-                                },
-                              ),
-                            ],
+                        child: FutureBuilder<ApiCallResponse>(
+                          future: GetChemistsCall.call(
+                            id: getJsonField(
+                              (page3LoginAuthResponse?.jsonBody ?? ''),
+                              r'''$pk''',
+                            ).toString(),
                           ),
+                          builder: (context, snapshot) {
+                            // Customize what your widget looks like when it's loading.
+                            if (!snapshot.hasData) {
+                              return Center(
+                                child: SizedBox(
+                                  width: 50,
+                                  height: 50,
+                                  child: CircularProgressIndicator(
+                                    color: FlutterFlowTheme.primaryColor,
+                                  ),
+                                ),
+                              );
+                            }
+                            final rowGetChemistsResponse = snapshot.data;
+                            return SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10, 0, 0, 0),
+                                    child: FutureBuilder<ApiCallResponse>(
+                                      future: GetDoctorsCall.call(
+                                        id: getJsonField(
+                                          (page3LoginAuthResponse?.jsonBody ??
+                                              ''),
+                                          r'''$pk''',
+                                        ).toString(),
+                                      ),
+                                      builder: (context, snapshot) {
+                                        // Customize what your widget looks like when it's loading.
+                                        if (!snapshot.hasData) {
+                                          return Center(
+                                            child: SizedBox(
+                                              width: 50,
+                                              height: 50,
+                                              child: CircularProgressIndicator(
+                                                color: FlutterFlowTheme
+                                                    .primaryColor,
+                                              ),
+                                            ),
+                                          );
+                                        }
+                                        final dropDownGetDoctorsResponse =
+                                            snapshot.data;
+                                        return FlutterFlowDropDown(
+                                          options: GetChemistsCall.name(
+                                            (rowGetChemistsResponse?.jsonBody ??
+                                                ''),
+                                          )
+                                              .map<String>((s) => s.toString())
+                                              .toList()
+                                              .toList(),
+                                          onChanged: (val) => setState(
+                                              () => dropDownValue = val),
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.8,
+                                          height: 50,
+                                          textStyle: FlutterFlowTheme.bodyText1
+                                              .override(
+                                            fontFamily: 'Poppins',
+                                            color: Colors.black,
+                                          ),
+                                          hintText: 'Please select...',
+                                          icon: Icon(
+                                            Icons.keyboard_arrow_down,
+                                            size: 15,
+                                          ),
+                                          fillColor: Colors.white,
+                                          elevation: 2,
+                                          borderColor: Color(0xFF0C4534),
+                                          borderWidth: 1,
+                                          borderRadius: 25,
+                                          margin:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          hidesUnderline: true,
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                  FlutterFlowIconButton(
+                                    borderColor: Colors.transparent,
+                                    borderRadius: 30,
+                                    borderWidth: 1,
+                                    buttonSize: 60,
+                                    icon: Icon(
+                                      Icons.add_rounded,
+                                      color: Color(0xFF13372C),
+                                      size: 35,
+                                    ),
+                                    onPressed: () async {
+                                      setState(() => FFAppState()
+                                          .selectedChemists
+                                          .add(dropDownValue));
+                                    },
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
                         ),
                       ),
                     ),
@@ -216,7 +242,7 @@ class _Page2WidgetState extends State<Page2Widget> {
                   child: Padding(
                     padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
                     child: Text(
-                      'Visited doctors:',
+                      'Visited chemists:',
                       style: FlutterFlowTheme.bodyText1,
                     ),
                   ),
@@ -228,16 +254,16 @@ class _Page2WidgetState extends State<Page2Widget> {
                   ),
                   child: Builder(
                     builder: (context) {
-                      final selectedDoctors =
-                          FFAppState().selectedDoctors?.toList() ?? [];
+                      final selectedChem =
+                          FFAppState().selectedChemists?.toList() ?? [];
                       return ListView.builder(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
-                        itemCount: selectedDoctors.length,
-                        itemBuilder: (context, selectedDoctorsIndex) {
-                          final selectedDoctorsItem =
-                              selectedDoctors[selectedDoctorsIndex];
+                        itemCount: selectedChem.length,
+                        itemBuilder: (context, selectedChemIndex) {
+                          final selectedChemItem =
+                              selectedChem[selectedChemIndex];
                           return Card(
                             clipBehavior: Clip.antiAliasWithSaveLayer,
                             color: Color(0xFF10072F),
@@ -253,7 +279,7 @@ class _Page2WidgetState extends State<Page2Widget> {
                                     MainAxisAlignment.spaceBetween,
                                 children: [
                                   AutoSizeText(
-                                    selectedDoctorsItem,
+                                    selectedChemItem,
                                     style: FlutterFlowTheme.bodyText1.override(
                                       fontFamily: 'Poppins',
                                       color: Color(0xFFEAEAEA),
@@ -276,8 +302,8 @@ class _Page2WidgetState extends State<Page2Widget> {
                                           ),
                                           onPressed: () async {
                                             setState(() => FFAppState()
-                                                .selectedDoctors
-                                                .remove(selectedDoctorsItem));
+                                                .selectedChemists
+                                                .remove(selectedChemItem));
                                           },
                                         ),
                                         FlutterFlowIconButton(
@@ -306,9 +332,9 @@ class _Page2WidgetState extends State<Page2Widget> {
                                                                 .height *
                                                             0.8,
                                                     child:
-                                                        VisitedDoctorDetailSheetWidget(
-                                                      currentDoctor:
-                                                          selectedDoctorsItem,
+                                                        VisitedChemistDetailSheetWidget(
+                                                      currentChemist:
+                                                          selectedChemItem,
                                                     ),
                                                   ),
                                                 );
