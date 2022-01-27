@@ -12,8 +12,7 @@ class LoginAuthCall {
   }) {
     return ApiManager.instance.makeApiCall(
       callName: 'loginAuth',
-      apiUrl:
-          'https://villas-writing-latino-jungle.trycloudflare.com/api/app/login',
+      apiUrl: 'http://127.0.0.1:8000/api/app/login',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -32,8 +31,7 @@ class GetDoctorsCall {
   }) {
     return ApiManager.instance.makeApiCall(
       callName: 'getDoctors',
-      apiUrl:
-          'https://villas-writing-latino-jungle.trycloudflare.com/api/msos/doctors',
+      apiUrl: 'http://127.0.0.1:8000/api/msos/doctors',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -55,8 +53,7 @@ class GetChemistsCall {
   }) {
     return ApiManager.instance.makeApiCall(
       callName: 'getChemists',
-      apiUrl:
-          'https://villas-writing-latino-jungle.trycloudflare.com/api/msos/chemists',
+      apiUrl: 'http://127.0.0.1:8000/api/msos/chemists',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -78,8 +75,7 @@ class GetARCsCall {
   }) {
     return ApiManager.instance.makeApiCall(
       callName: 'getARCs',
-      apiUrl:
-          'https://villas-writing-latino-jungle.trycloudflare.com/api/msos/arcs',
+      apiUrl: 'http://127.0.0.1:8000/api/msos/arcs',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -101,8 +97,7 @@ class GetStockistsCall {
   }) {
     return ApiManager.instance.makeApiCall(
       callName: 'getStockists',
-      apiUrl:
-          'https://villas-writing-latino-jungle.trycloudflare.com/api/msos/stockists',
+      apiUrl: 'http://127.0.0.1:8000/api/msos/stockists',
       callType: ApiCallType.GET,
       headers: {},
       params: {
@@ -122,8 +117,7 @@ class GetSamplesCall {
   static Future<ApiCallResponse> call() {
     return ApiManager.instance.makeApiCall(
       callName: 'getSamples',
-      apiUrl:
-          'https://villas-writing-latino-jungle.trycloudflare.com/api/samples',
+      apiUrl: 'http://127.0.0.1:8000/api/samples',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -141,7 +135,7 @@ class GetPOPsCall {
   static Future<ApiCallResponse> call() {
     return ApiManager.instance.makeApiCall(
       callName: 'getPOPs',
-      apiUrl: 'https://villas-writing-latino-jungle.trycloudflare.com/api/pops',
+      apiUrl: 'http://127.0.0.1:8000/api/pops',
       callType: ApiCallType.GET,
       headers: {},
       params: {},
@@ -159,8 +153,7 @@ class GetProductsCall {
   static Future<ApiCallResponse> call() {
     return ApiManager.instance.makeApiCall(
       callName: 'getProducts',
-      apiUrl:
-          'https://villas-writing-latino-jungle.trycloudflare.com/api/products',
+      apiUrl: 'http://127.0.0.1:8000/api/products',
       callType: ApiCallType.GET,
       headers: {},
       params: {},

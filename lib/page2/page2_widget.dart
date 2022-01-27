@@ -4,6 +4,8 @@ import '../flutter_flow/flutter_flow_drop_down.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../flutter_flow/flutter_flow_widgets.dart';
+import '../custom_code/actions/index.dart' as actions;
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -218,7 +220,6 @@ class _Page2WidgetState extends State<Page2Widget> {
               ),
               Container(
                 width: MediaQuery.of(context).size.width * 0.95,
-                height: MediaQuery.of(context).size.height * 0.58,
                 decoration: BoxDecoration(
                   color: Color(0x00EEEEEE),
                 ),
@@ -228,6 +229,7 @@ class _Page2WidgetState extends State<Page2Widget> {
                         FFAppState().selectedDoctors?.toList() ?? [];
                     return ListView.builder(
                       padding: EdgeInsets.zero,
+                      shrinkWrap: true,
                       scrollDirection: Axis.vertical,
                       itemCount: selectedDoctors.length,
                       itemBuilder: (context, selectedDoctorsIndex) {
@@ -318,6 +320,56 @@ class _Page2WidgetState extends State<Page2Widget> {
                       },
                     );
                   },
+                ),
+              ),
+              Align(
+                alignment: AlignmentDirectional(-1, 0),
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(15, 30, 0, 0),
+                  child: FFButtonWidget(
+                    onPressed: () async {
+                      await showDialog(
+                        context: context,
+                        builder: (alertDialogContext) {
+                          return AlertDialog(
+                            title: Text('Warning!'),
+                            content: Text(
+                                'You must not delete any entries on this page. To make changes click cancel and make changes. To confirm, click \'confirm\''),
+                            actions: [
+                              TextButton(
+                                onPressed: () =>
+                                    Navigator.pop(alertDialogContext),
+                                child: Text('Cancel'),
+                              ),
+                              TextButton(
+                                onPressed: () async {
+                                  Navigator.pop(alertDialogContext);
+                                  await actions.commitDoctors();
+                                  ;
+                                },
+                                child: Text('Confirm'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
+                    text: 'confirm',
+                    options: FFButtonOptions(
+                      width: 130,
+                      height: 40,
+                      color: Color(0xFF4E77D8),
+                      textStyle: FlutterFlowTheme.subtitle2.override(
+                        fontFamily: 'Poppins',
+                        color: Colors.white,
+                      ),
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                        width: 1,
+                      ),
+                      borderRadius: 12,
+                    ),
+                  ),
                 ),
               ),
             ],

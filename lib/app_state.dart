@@ -1,6 +1,5 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/lat_lng.dart';
-import 'package:sblr/custom_code/models/sblr_data.dart';
 
 class FFAppState {
   static final FFAppState _instance = FFAppState._internal();
@@ -31,7 +30,7 @@ class FFAppState {
 
   List<String> connectedDoctorPop = [];
 
-
+  List<String> connectedDoctorBooking = [];
 }
 
 LatLng _latLngFromString(String val) {
