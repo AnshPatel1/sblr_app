@@ -33,12 +33,12 @@ class _QuantityAdderWidgetState extends State<QuantityAdderWidget> {
     return Form(
       key: formKey,
       child: Padding(
-        padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 20),
+        padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
         child: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height * 1,
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Color(0xFF0B0B48),
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(0),
               bottomRight: Radius.circular(0),
@@ -47,16 +47,23 @@ class _QuantityAdderWidgetState extends State<QuantityAdderWidget> {
             ),
           ),
           child: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(10, 12, 10, 24),
+            padding: EdgeInsetsDirectional.fromSTEB(20, 12, 20, 24),
             child: Column(
               mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AutoSizeText(
-                  'Set quantity for ${widget.name}',
-                  style: FlutterFlowTheme.bodyText1.override(
-                    fontFamily: 'Poppins',
-                    fontSize: 16,
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    color: Colors.transparent,
+                  ),
+                  child: AutoSizeText(
+                    'Set quantity for ${widget.name}',
+                    style: FlutterFlowTheme.bodyText1.override(
+                      fontFamily: 'Poppins',
+                      color: Color(0xFFDBDBDB),
+                      fontSize: 16,
+                    ),
                   ),
                 ),
                 Padding(
@@ -66,7 +73,10 @@ class _QuantityAdderWidgetState extends State<QuantityAdderWidget> {
                     obscureText: false,
                     decoration: InputDecoration(
                       hintText: 'Enter quantity',
-                      hintStyle: FlutterFlowTheme.bodyText1,
+                      hintStyle: FlutterFlowTheme.bodyText1.override(
+                        fontFamily: 'Poppins',
+                        color: Color(0xFFD3D3D3),
+                      ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: Color(0xFF2143A0),
@@ -82,7 +92,10 @@ class _QuantityAdderWidgetState extends State<QuantityAdderWidget> {
                         borderRadius: BorderRadius.circular(25),
                       ),
                     ),
-                    style: FlutterFlowTheme.bodyText1,
+                    style: FlutterFlowTheme.bodyText1.override(
+                      fontFamily: 'Poppins',
+                      color: Color(0xFFD3D3D3),
+                    ),
                     validator: (val) {
                       if (val.isEmpty) {
                         return 'Field is required';
