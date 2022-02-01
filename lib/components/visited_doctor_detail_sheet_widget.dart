@@ -226,9 +226,7 @@ class _VisitedDoctorDetailSheetWidgetState
                                                                 .fromSTEB(10, 0,
                                                                     0, 0),
                                                         child: AutoSizeText(
-                                                          samplesItem
-                                                              .maybeHandleOverflow(
-                                                                  maxChars: 20),
+                                                          samplesItem,
                                                           style:
                                                               FlutterFlowTheme
                                                                   .bodyText1
@@ -533,9 +531,7 @@ class _VisitedDoctorDetailSheetWidgetState
                                                                 .fromSTEB(10, 0,
                                                                     0, 0),
                                                         child: AutoSizeText(
-                                                          popsItem
-                                                              .maybeHandleOverflow(
-                                                                  maxChars: 20),
+                                                          popsItem,
                                                           style:
                                                               FlutterFlowTheme
                                                                   .bodyText1
@@ -826,8 +822,7 @@ class _VisitedDoctorDetailSheetWidgetState
                                               padding: EdgeInsetsDirectional
                                                   .fromSTEB(10, 0, 0, 0),
                                               child: AutoSizeText(
-                                                bookingItem.maybeHandleOverflow(
-                                                    maxChars: 20),
+                                                bookingItem,
                                                 style: FlutterFlowTheme
                                                     .bodyText1
                                                     .override(

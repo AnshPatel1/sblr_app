@@ -216,9 +216,7 @@ class _VisitedArcDetailSheetWidgetState
                                                               .fromSTEB(
                                                                   10, 0, 0, 0),
                                                       child: AutoSizeText(
-                                                        popsItem
-                                                            .maybeHandleOverflow(
-                                                                maxChars: 20),
+                                                        popsItem,
                                                         style: FlutterFlowTheme
                                                             .bodyText1
                                                             .override(
@@ -508,9 +506,7 @@ class _VisitedArcDetailSheetWidgetState
                                                 padding: EdgeInsetsDirectional
                                                     .fromSTEB(10, 0, 0, 0),
                                                 child: AutoSizeText(
-                                                  bookingItem
-                                                      .maybeHandleOverflow(
-                                                          maxChars: 20),
+                                                  bookingItem,
                                                   style: FlutterFlowTheme
                                                       .bodyText1
                                                       .override(
