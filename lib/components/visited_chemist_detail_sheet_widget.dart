@@ -306,6 +306,9 @@ class _VisitedChemistDetailSheetWidgetState
                                                                     await showModalBottomSheet(
                                                                       isScrollControlled:
                                                                           true,
+                                                                      backgroundColor:
+                                                                          Colors
+                                                                              .transparent,
                                                                       context:
                                                                           context,
                                                                       builder:
@@ -571,6 +574,9 @@ class _VisitedChemistDetailSheetWidgetState
                                                           await showModalBottomSheet(
                                                             isScrollControlled:
                                                                 true,
+                                                            backgroundColor:
+                                                                Colors
+                                                                    .transparent,
                                                             context: context,
                                                             builder: (context) {
                                                               return Padding(

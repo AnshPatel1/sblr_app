@@ -286,6 +286,9 @@ class _VisitedArcDetailSheetWidgetState
                                                                 await showModalBottomSheet(
                                                                   isScrollControlled:
                                                                       true,
+                                                                  backgroundColor:
+                                                                      Colors
+                                                                          .transparent,
                                                                   context:
                                                                       context,
                                                                   builder:
@@ -553,6 +556,9 @@ class _VisitedArcDetailSheetWidgetState
                                                           await showModalBottomSheet(
                                                             isScrollControlled:
                                                                 true,
+                                                            backgroundColor:
+                                                                Colors
+                                                                    .transparent,
                                                             context: context,
                                                             builder: (context) {
                                                               return Padding(
