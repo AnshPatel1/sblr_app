@@ -210,23 +210,36 @@ class _VisitedChemistDetailSheetWidgetState
                                                         MainAxisAlignment
                                                             .spaceBetween,
                                                     children: [
-                                                      Padding(
-                                                        padding:
-                                                            EdgeInsetsDirectional
-                                                                .fromSTEB(10, 0,
-                                                                    0, 0),
-                                                        child: AutoSizeText(
-                                                          popsItem
-                                                              .maybeHandleOverflow(
-                                                                  maxChars: 20),
-                                                          style:
-                                                              FlutterFlowTheme
-                                                                  .bodyText1
-                                                                  .override(
-                                                            fontFamily:
-                                                                'Poppins',
-                                                            color: Color(
-                                                                0xFFE0E0E0),
+                                                      Container(
+                                                        width: MediaQuery.of(
+                                                                    context)
+                                                                .size
+                                                                .width *
+                                                            0.6,
+                                                        decoration:
+                                                            BoxDecoration(
+                                                          color: Colors
+                                                              .transparent,
+                                                        ),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(10,
+                                                                      0, 0, 0),
+                                                          child: AutoSizeText(
+                                                            popsItem
+                                                                .maybeHandleOverflow(
+                                                                    maxChars:
+                                                                        20),
+                                                            style:
+                                                                FlutterFlowTheme
+                                                                    .bodyText1
+                                                                    .override(
+                                                              fontFamily:
+                                                                  'Poppins',
+                                                              color: Color(
+                                                                  0xFFE0E0E0),
+                                                            ),
                                                           ),
                                                         ),
                                                       ),
@@ -504,17 +517,27 @@ class _VisitedChemistDetailSheetWidgetState
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(10, 0, 0, 0),
-                                              child: AutoSizeText(
-                                                bookingItem.maybeHandleOverflow(
-                                                    maxChars: 20),
-                                                style: FlutterFlowTheme
-                                                    .bodyText1
-                                                    .override(
-                                                  fontFamily: 'Poppins',
-                                                  color: Color(0xFFE0E0E0),
+                                            Container(
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.6,
+                                              decoration: BoxDecoration(
+                                                color: Colors.transparent,
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(10, 0, 0, 0),
+                                                child: AutoSizeText(
+                                                  bookingItem
+                                                      .maybeHandleOverflow(
+                                                          maxChars: 20),
+                                                  style: FlutterFlowTheme
+                                                      .bodyText1
+                                                      .override(
+                                                    fontFamily: 'Poppins',
+                                                    color: Color(0xFFE0E0E0),
+                                                  ),
                                                 ),
                                               ),
                                             ),
