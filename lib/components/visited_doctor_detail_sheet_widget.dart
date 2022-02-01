@@ -74,374 +74,585 @@ class _VisitedDoctorDetailSheetWidgetState
                   decoration: BoxDecoration(
                     color: Color(0xFFEEEEEE),
                   ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.max,
-                    children: [
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
-                            child: FutureBuilder<ApiCallResponse>(
-                              future: GetSamplesCall.call(),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50,
-                                      height: 50,
-                                      child: CircularProgressIndicator(
-                                        color: FlutterFlowTheme.primaryColor,
-                                      ),
-                                    ),
-                                  );
-                                }
-                                final rowGetSamplesResponse = snapshot.data;
-                                return Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    FlutterFlowDropDown(
-                                      options: GetSamplesCall.names(
-                                        (rowGetSamplesResponse?.jsonBody ?? ''),
-                                      )
-                                          .map<String>((s) => s.toString())
-                                          .toList()
-                                          .toList(),
-                                      onChanged: (val) => setState(
-                                          () => dropDownSampleValue = val),
-                                      width: MediaQuery.of(context).size.width *
-                                          0.8,
-                                      height: 50,
-                                      textStyle:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
-                                        color: Colors.black,
-                                      ),
-                                      hintText: 'Please select...',
-                                      icon: Icon(
-                                        Icons.keyboard_arrow_down,
-                                        color: Color(0xFF2143A0),
-                                        size: 15,
-                                      ),
-                                      fillColor: Colors.white,
-                                      elevation: 2,
-                                      borderColor: Color(0xFF2143A0),
-                                      borderWidth: 1,
-                                      borderRadius: 25,
-                                      margin: EdgeInsetsDirectional.fromSTEB(
-                                          12, 4, 12, 4),
-                                      hidesUnderline: true,
-                                    ),
-                                    FlutterFlowIconButton(
-                                      borderColor: Colors.transparent,
-                                      borderRadius: 30,
-                                      borderWidth: 1,
-                                      buttonSize: 40,
-                                      icon: Icon(
-                                        Icons.add,
-                                        color: Color(0xFF2143A0),
-                                        size: 25,
-                                      ),
-                                      onPressed: () async {
-                                        setState(() => FFAppState()
-                                            .connectedDoctorSample
-                                            .add(dropDownSampleValue));
-                                      },
-                                    ),
-                                  ],
-                                );
-                              },
-                            ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            decoration: BoxDecoration(
-                              color: Color(0xFFEEEEEE),
-                            ),
-                            child: Builder(
-                              builder: (context) {
-                                final samples = FFAppState()
-                                        .connectedDoctorSample
-                                        ?.toList() ??
-                                    [];
-                                return ListView.builder(
-                                  padding: EdgeInsets.zero,
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: samples.length,
-                                  itemBuilder: (context, samplesIndex) {
-                                    final samplesItem = samples[samplesIndex];
-                                    return Container(
-                                      decoration: BoxDecoration(
-                                        color: Color(0xFFEEEEEE),
-                                      ),
-                                      child: Align(
-                                        alignment: AlignmentDirectional(1, 0),
-                                        child: Padding(
-                                          padding:
-                                              EdgeInsetsDirectional.fromSTEB(
-                                                  0, 7, 0, 7),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              AutoSizeText(
-                                                samplesItem.maybeHandleOverflow(
-                                                    maxChars: 20),
-                                                style:
-                                                    FlutterFlowTheme.bodyText1,
-                                              ),
-                                              FFButtonWidget(
-                                                onPressed: () async {
-                                                  await showModalBottomSheet(
-                                                    isScrollControlled: true,
-                                                    context: context,
-                                                    builder: (context) {
-                                                      return Padding(
-                                                        padding: MediaQuery.of(
-                                                                context)
-                                                            .viewInsets,
-                                                        child: Container(
-                                                          height: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .height *
-                                                              0.4,
-                                                          child:
-                                                              QuantityAdderWidget(
-                                                            name: samplesItem,
-                                                          ),
-                                                        ),
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                                text: 'set qty',
-                                                options: FFButtonOptions(
-                                                  width: 80,
-                                                  height: 40,
-                                                  color: FlutterFlowTheme
-                                                      .primaryColor,
-                                                  textStyle: FlutterFlowTheme
-                                                      .subtitle2
-                                                      .override(
-                                                    fontFamily: 'Poppins',
-                                                    color: Colors.white,
-                                                  ),
-                                                  borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 1,
-                                                  ),
-                                                  borderRadius: 12,
-                                                ),
-                                              ),
-                                            ],
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.max,
+                      children: [
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0, 10, 0, 10),
+                                child: FutureBuilder<ApiCallResponse>(
+                                  future: GetSamplesCall.call(),
+                                  builder: (context, snapshot) {
+                                    // Customize what your widget looks like when it's loading.
+                                    if (!snapshot.hasData) {
+                                      return Center(
+                                        child: SizedBox(
+                                          width: 50,
+                                          height: 50,
+                                          child: CircularProgressIndicator(
+                                            color:
+                                                FlutterFlowTheme.primaryColor,
                                           ),
                                         ),
-                                      ),
+                                      );
+                                    }
+                                    final rowGetSamplesResponse = snapshot.data;
+                                    return Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        FlutterFlowDropDown(
+                                          options: GetSamplesCall.names(
+                                            (rowGetSamplesResponse?.jsonBody ??
+                                                ''),
+                                          )
+                                              .map<String>((s) => s.toString())
+                                              .toList()
+                                              .toList(),
+                                          onChanged: (val) => setState(
+                                              () => dropDownSampleValue = val),
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.8,
+                                          height: 50,
+                                          textStyle: FlutterFlowTheme.bodyText1
+                                              .override(
+                                            fontFamily: 'Poppins',
+                                            color: Colors.black,
+                                          ),
+                                          hintText: 'Please select...',
+                                          icon: Icon(
+                                            Icons.keyboard_arrow_down,
+                                            color: Color(0xFF2143A0),
+                                            size: 15,
+                                          ),
+                                          fillColor: Colors.white,
+                                          elevation: 2,
+                                          borderColor: Color(0xFF2143A0),
+                                          borderWidth: 1,
+                                          borderRadius: 25,
+                                          margin:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          hidesUnderline: true,
+                                        ),
+                                        FlutterFlowIconButton(
+                                          borderColor: Colors.transparent,
+                                          borderRadius: 30,
+                                          borderWidth: 1,
+                                          buttonSize: 40,
+                                          icon: Icon(
+                                            Icons.add,
+                                            color: Color(0xFF2143A0),
+                                            size: 25,
+                                          ),
+                                          onPressed: () async {
+                                            setState(() => FFAppState()
+                                                .connectedDoctorSample
+                                                .add(dropDownSampleValue));
+                                          },
+                                        ),
+                                      ],
                                     );
                                   },
-                                );
-                              },
-                            ),
-                          ),
-                        ],
-                      ),
-                      Column(
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Align(
-                            alignment: AlignmentDirectional(-1, 0),
-                            child: Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
-                              child: Text(
-                                'Select POPs distributed:',
-                                style: FlutterFlowTheme.bodyText1,
+                                ),
                               ),
-                            ),
-                          ),
-                          Padding(
-                            padding:
-                                EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
-                            child: FutureBuilder<ApiCallResponse>(
-                              future: GetPOPsCall.call(),
-                              builder: (context, snapshot) {
-                                // Customize what your widget looks like when it's loading.
-                                if (!snapshot.hasData) {
-                                  return Center(
-                                    child: SizedBox(
-                                      width: 50,
-                                      height: 50,
-                                      child: CircularProgressIndicator(
-                                        color: FlutterFlowTheme.primaryColor,
-                                      ),
-                                    ),
-                                  );
-                                }
-                                final rowGetPOPsResponse = snapshot.data;
-                                return Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    FlutterFlowDropDown(
-                                      options: GetPOPsCall.names(
-                                        (rowGetPOPsResponse?.jsonBody ?? ''),
-                                      )
-                                          .map<String>((s) => s.toString())
-                                          .toList()
-                                          .toList(),
-                                      onChanged: (val) => setState(
-                                          () => pOPDropdownValue1 = val),
-                                      width: MediaQuery.of(context).size.width *
-                                          0.8,
-                                      height: 50,
-                                      textStyle:
-                                          FlutterFlowTheme.bodyText1.override(
-                                        fontFamily: 'Poppins',
-                                        color: Colors.black,
-                                      ),
-                                      hintText: 'Please select...',
-                                      icon: Icon(
-                                        Icons.keyboard_arrow_down,
-                                        color: Color(0xFF2143A0),
-                                        size: 15,
-                                      ),
-                                      fillColor: Colors.white,
-                                      elevation: 2,
-                                      borderColor: Color(0xFF2143A0),
-                                      borderWidth: 1,
-                                      borderRadius: 25,
-                                      margin: EdgeInsetsDirectional.fromSTEB(
-                                          12, 4, 12, 4),
-                                      hidesUnderline: true,
-                                    ),
-                                    FlutterFlowIconButton(
-                                      borderColor: Colors.transparent,
-                                      borderRadius: 30,
-                                      borderWidth: 1,
-                                      buttonSize: 40,
-                                      icon: Icon(
-                                        Icons.add,
-                                        color: Color(0xFF2143A0),
-                                        size: 25,
-                                      ),
-                                      onPressed: () async {
-                                        setState(() => FFAppState()
-                                            .connectedDoctorPop
-                                            .add(pOPDropdownValue1));
-                                      },
-                                    ),
-                                  ],
-                                );
-                              },
-                            ),
-                          ),
-                          Container(
-                            width: MediaQuery.of(context).size.width,
-                            decoration: BoxDecoration(
-                              color: Color(0xFFEEEEEE),
-                            ),
-                            child: Builder(
-                              builder: (context) {
-                                final pops =
-                                    FFAppState().connectedDoctorPop?.toList() ??
+                              Container(
+                                width: MediaQuery.of(context).size.width,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFEEEEEE),
+                                ),
+                                child: Builder(
+                                  builder: (context) {
+                                    final samples = FFAppState()
+                                            .connectedDoctorSample
+                                            ?.toList() ??
                                         [];
-                                return ListView.builder(
-                                  padding: EdgeInsets.zero,
-                                  shrinkWrap: true,
-                                  scrollDirection: Axis.vertical,
-                                  itemCount: pops.length,
-                                  itemBuilder: (context, popsIndex) {
-                                    final popsItem = pops[popsIndex];
-                                    return Container(
-                                      decoration: BoxDecoration(
-                                        color: Color(0xFFEEEEEE),
-                                      ),
-                                      child: Align(
-                                        alignment: AlignmentDirectional(1, 0),
-                                        child: Padding(
+                                    return ListView.builder(
+                                      padding: EdgeInsets.zero,
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.vertical,
+                                      itemCount: samples.length,
+                                      itemBuilder: (context, samplesIndex) {
+                                        final samplesItem =
+                                            samples[samplesIndex];
+                                        return Padding(
                                           padding:
                                               EdgeInsetsDirectional.fromSTEB(
-                                                  0, 7, 0, 7),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.max,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              AutoSizeText(
-                                                popsItem.maybeHandleOverflow(
-                                                    maxChars: 20),
-                                                style:
-                                                    FlutterFlowTheme.bodyText1,
-                                              ),
-                                              FFButtonWidget(
-                                                onPressed: () async {
-                                                  await showModalBottomSheet(
-                                                    isScrollControlled: true,
-                                                    context: context,
-                                                    builder: (context) {
-                                                      return Padding(
-                                                        padding: MediaQuery.of(
-                                                                context)
-                                                            .viewInsets,
-                                                        child: Container(
-                                                          height: MediaQuery.of(
-                                                                      context)
-                                                                  .size
-                                                                  .height *
-                                                              0.4,
-                                                          child:
-                                                              QuantityAdderWidget(
-                                                            name: popsItem,
+                                                  0, 0, 0, 10),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: Color(0xFF0B0B48),
+                                              borderRadius:
+                                                  BorderRadius.circular(100),
+                                            ),
+                                            child: Align(
+                                              alignment:
+                                                  AlignmentDirectional(1, 0),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 7, 0, 7),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  10, 0, 0, 0),
+                                                      child: AutoSizeText(
+                                                        samplesItem
+                                                            .maybeHandleOverflow(
+                                                                maxChars: 20),
+                                                        style: FlutterFlowTheme
+                                                            .bodyText1
+                                                            .override(
+                                                          fontFamily: 'Poppins',
+                                                          color:
+                                                              Color(0xFFE0E0E0),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 0, 15, 0),
+                                                      child: Container(
+                                                        decoration:
+                                                            BoxDecoration(),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      0, 2, 0),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            0,
+                                                                            10,
+                                                                            0),
+                                                                child:
+                                                                    FlutterFlowIconButton(
+                                                                  borderColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  borderRadius:
+                                                                      20,
+                                                                  borderWidth:
+                                                                      1,
+                                                                  buttonSize:
+                                                                      40,
+                                                                  icon: Icon(
+                                                                    Icons
+                                                                        .delete_forever,
+                                                                    color: Color(
+                                                                        0xFFE75E5E),
+                                                                    size: 25,
+                                                                  ),
+                                                                  onPressed:
+                                                                      () async {
+                                                                    setState(() => FFAppState()
+                                                                        .connectedDoctorSample
+                                                                        .remove(
+                                                                            samplesItem));
+                                                                  },
+                                                                ),
+                                                              ),
+                                                              FlutterFlowIconButton(
+                                                                borderColor: Color(
+                                                                    0x0051E0B5),
+                                                                borderRadius:
+                                                                    30,
+                                                                borderWidth: 1,
+                                                                buttonSize: 40,
+                                                                icon: Icon(
+                                                                  Icons.edit,
+                                                                  color: FlutterFlowTheme
+                                                                      .primaryColor,
+                                                                  size: 20,
+                                                                ),
+                                                                onPressed:
+                                                                    () async {
+                                                                  await showModalBottomSheet(
+                                                                    isScrollControlled:
+                                                                        true,
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (context) {
+                                                                      return Padding(
+                                                                        padding:
+                                                                            MediaQuery.of(context).viewInsets,
+                                                                        child:
+                                                                            Container(
+                                                                          height:
+                                                                              MediaQuery.of(context).size.height * 0.4,
+                                                                          child:
+                                                                              QuantityAdderWidget(
+                                                                            name:
+                                                                                samplesItem,
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    },
+                                                                  );
+                                                                },
+                                                              ),
+                                                            ],
                                                           ),
                                                         ),
-                                                      );
-                                                    },
-                                                  );
-                                                },
-                                                text: 'set qty',
-                                                options: FFButtonOptions(
-                                                  width: 80,
-                                                  height: 40,
-                                                  color: FlutterFlowTheme
-                                                      .primaryColor,
-                                                  textStyle: FlutterFlowTheme
-                                                      .subtitle2
-                                                      .override(
-                                                    fontFamily: 'Poppins',
-                                                    color: Colors.white,
-                                                  ),
-                                                  borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                    width: 1,
-                                                  ),
-                                                  borderRadius: 12,
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
-                                            ],
+                                            ),
                                           ),
-                                        ),
-                                      ),
+                                        );
+                                      },
                                     );
                                   },
-                                );
-                              },
-                            ),
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
-                    ],
+                        ),
+                        FFButtonWidget(
+                          onPressed: () async {
+                            await actions.commitDoctors();
+                          },
+                          text: 'Lock Samples',
+                          options: FFButtonOptions(
+                            width: 130,
+                            height: 40,
+                            color: FlutterFlowTheme.primaryColor,
+                            textStyle: FlutterFlowTheme.subtitle2.override(
+                              fontFamily: 'Poppins',
+                              color: Colors.white,
+                            ),
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
+                            ),
+                            borderRadius: 12,
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 20),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.max,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Align(
+                                alignment: AlignmentDirectional(-1, 0),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 40, 0, 0),
+                                  child: Text(
+                                    'Select POPs distributed:',
+                                    style: FlutterFlowTheme.bodyText1,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsetsDirectional.fromSTEB(
+                                    0, 10, 0, 10),
+                                child: FutureBuilder<ApiCallResponse>(
+                                  future: GetPOPsCall.call(),
+                                  builder: (context, snapshot) {
+                                    // Customize what your widget looks like when it's loading.
+                                    if (!snapshot.hasData) {
+                                      return Center(
+                                        child: SizedBox(
+                                          width: 50,
+                                          height: 50,
+                                          child: CircularProgressIndicator(
+                                            color:
+                                                FlutterFlowTheme.primaryColor,
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                    final rowGetPOPsResponse = snapshot.data;
+                                    return Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        FlutterFlowDropDown(
+                                          options: GetPOPsCall.names(
+                                            (rowGetPOPsResponse?.jsonBody ??
+                                                ''),
+                                          )
+                                              .map<String>((s) => s.toString())
+                                              .toList()
+                                              .toList(),
+                                          onChanged: (val) => setState(
+                                              () => pOPDropdownValue1 = val),
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.8,
+                                          height: 50,
+                                          textStyle: FlutterFlowTheme.bodyText1
+                                              .override(
+                                            fontFamily: 'Poppins',
+                                            color: Colors.black,
+                                          ),
+                                          hintText: 'Please select...',
+                                          icon: Icon(
+                                            Icons.keyboard_arrow_down,
+                                            color: Color(0xFF2143A0),
+                                            size: 15,
+                                          ),
+                                          fillColor: Colors.white,
+                                          elevation: 2,
+                                          borderColor: Color(0xFF2143A0),
+                                          borderWidth: 1,
+                                          borderRadius: 25,
+                                          margin:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  12, 4, 12, 4),
+                                          hidesUnderline: true,
+                                        ),
+                                        FlutterFlowIconButton(
+                                          borderColor: Colors.transparent,
+                                          borderRadius: 30,
+                                          borderWidth: 1,
+                                          buttonSize: 40,
+                                          icon: Icon(
+                                            Icons.add,
+                                            color: Color(0xFF2143A0),
+                                            size: 25,
+                                          ),
+                                          onPressed: () async {
+                                            setState(() => FFAppState()
+                                                .connectedDoctorPop
+                                                .add(pOPDropdownValue1));
+                                          },
+                                        ),
+                                      ],
+                                    );
+                                  },
+                                ),
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFEEEEEE),
+                                ),
+                                child: Builder(
+                                  builder: (context) {
+                                    final pops = FFAppState()
+                                            .connectedDoctorPop
+                                            ?.toList() ??
+                                        [];
+                                    return ListView.builder(
+                                      padding: EdgeInsets.zero,
+                                      shrinkWrap: true,
+                                      scrollDirection: Axis.vertical,
+                                      itemCount: pops.length,
+                                      itemBuilder: (context, popsIndex) {
+                                        final popsItem = pops[popsIndex];
+                                        return Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  0, 0, 0, 10),
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                              color: Color(0xFF0B0B48),
+                                              borderRadius:
+                                                  BorderRadius.circular(100),
+                                            ),
+                                            child: Align(
+                                              alignment:
+                                                  AlignmentDirectional(1, 0),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 7, 0, 7),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  10, 0, 0, 0),
+                                                      child: AutoSizeText(
+                                                        popsItem
+                                                            .maybeHandleOverflow(
+                                                                maxChars: 20),
+                                                        style: FlutterFlowTheme
+                                                            .bodyText1
+                                                            .override(
+                                                          fontFamily: 'Poppins',
+                                                          color:
+                                                              Color(0xFFE0E0E0),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 0, 15, 0),
+                                                      child: Container(
+                                                        decoration:
+                                                            BoxDecoration(),
+                                                        child: Padding(
+                                                          padding:
+                                                              EdgeInsetsDirectional
+                                                                  .fromSTEB(0,
+                                                                      0, 2, 0),
+                                                          child: Row(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .max,
+                                                            children: [
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0,
+                                                                            0,
+                                                                            10,
+                                                                            0),
+                                                                child:
+                                                                    FlutterFlowIconButton(
+                                                                  borderColor:
+                                                                      Colors
+                                                                          .transparent,
+                                                                  borderRadius:
+                                                                      20,
+                                                                  borderWidth:
+                                                                      1,
+                                                                  buttonSize:
+                                                                      40,
+                                                                  icon: Icon(
+                                                                    Icons
+                                                                        .delete_forever,
+                                                                    color: Color(
+                                                                        0xFFE75E5E),
+                                                                    size: 25,
+                                                                  ),
+                                                                  onPressed:
+                                                                      () async {
+                                                                    setState(() => FFAppState()
+                                                                        .connectedDoctorPop
+                                                                        .remove(
+                                                                            popsItem));
+                                                                  },
+                                                                ),
+                                                              ),
+                                                              FlutterFlowIconButton(
+                                                                borderColor: Color(
+                                                                    0x0051E0B5),
+                                                                borderRadius:
+                                                                    30,
+                                                                borderWidth: 1,
+                                                                buttonSize: 40,
+                                                                icon: Icon(
+                                                                  Icons.edit,
+                                                                  color: FlutterFlowTheme
+                                                                      .primaryColor,
+                                                                  size: 20,
+                                                                ),
+                                                                onPressed:
+                                                                    () async {
+                                                                  await showModalBottomSheet(
+                                                                    isScrollControlled:
+                                                                        true,
+                                                                    context:
+                                                                        context,
+                                                                    builder:
+                                                                        (context) {
+                                                                      return Padding(
+                                                                        padding:
+                                                                            MediaQuery.of(context).viewInsets,
+                                                                        child:
+                                                                            Container(
+                                                                          height:
+                                                                              MediaQuery.of(context).size.height * 0.4,
+                                                                          child:
+                                                                              QuantityAdderWidget(
+                                                                            name:
+                                                                                popsItem,
+                                                                          ),
+                                                                        ),
+                                                                      );
+                                                                    },
+                                                                  );
+                                                                },
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    );
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        FFButtonWidget(
+                          onPressed: () async {
+                            await actions.commitDoctors();
+                          },
+                          text: 'Lock POP',
+                          options: FFButtonOptions(
+                            width: 130,
+                            height: 40,
+                            color: FlutterFlowTheme.primaryColor,
+                            textStyle: FlutterFlowTheme.subtitle2.override(
+                              fontFamily: 'Poppins',
+                              color: Colors.white,
+                            ),
+                            borderSide: BorderSide(
+                              color: Colors.transparent,
+                              width: 1,
+                            ),
+                            borderRadius: 12,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -553,61 +764,124 @@ class _VisitedDoctorDetailSheetWidgetState
                               decoration: BoxDecoration(
                                 color: Color(0xFFEEEEEE),
                               ),
-                              child: Align(
-                                alignment: AlignmentDirectional(1, 0),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 7, 0, 7),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      AutoSizeText(
-                                        bookingItem.maybeHandleOverflow(
-                                            maxChars: 20),
-                                        style: FlutterFlowTheme.bodyText1,
-                                      ),
-                                      FFButtonWidget(
-                                        onPressed: () async {
-                                          await showModalBottomSheet(
-                                            isScrollControlled: true,
-                                            context: context,
-                                            builder: (context) {
-                                              return Padding(
-                                                padding: MediaQuery.of(context)
-                                                    .viewInsets,
-                                                child: Container(
-                                                  height: MediaQuery.of(context)
-                                                          .size
-                                                          .height *
-                                                      0.4,
-                                                  child: QuantityAdderWidget(
-                                                    name: bookingItem,
-                                                  ),
+                              child: Padding(
+                                padding:
+                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFF0B0B48),
+                                    borderRadius: BorderRadius.circular(100),
+                                  ),
+                                  child: Align(
+                                    alignment: AlignmentDirectional(1, 0),
+                                    child: Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 7, 0, 7),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    10, 0, 0, 0),
+                                            child: AutoSizeText(
+                                              bookingItem.maybeHandleOverflow(
+                                                  maxChars: 20),
+                                              style: FlutterFlowTheme.bodyText1
+                                                  .override(
+                                                fontFamily: 'Poppins',
+                                                color: Color(0xFFE0E0E0),
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding:
+                                                EdgeInsetsDirectional.fromSTEB(
+                                                    0, 0, 15, 0),
+                                            child: Container(
+                                              decoration: BoxDecoration(),
+                                              child: Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(0, 0, 2, 0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Padding(
+                                                      padding:
+                                                          EdgeInsetsDirectional
+                                                              .fromSTEB(
+                                                                  0, 0, 10, 0),
+                                                      child:
+                                                          FlutterFlowIconButton(
+                                                        borderColor:
+                                                            Colors.transparent,
+                                                        borderRadius: 20,
+                                                        borderWidth: 1,
+                                                        buttonSize: 40,
+                                                        icon: Icon(
+                                                          Icons.delete_forever,
+                                                          color:
+                                                              Color(0xFFE75E5E),
+                                                          size: 25,
+                                                        ),
+                                                        onPressed: () async {
+                                                          setState(() => FFAppState()
+                                                              .connectedDoctorBooking
+                                                              .remove(
+                                                                  bookingItem));
+                                                        },
+                                                      ),
+                                                    ),
+                                                    FlutterFlowIconButton(
+                                                      borderColor:
+                                                          Color(0x0051E0B5),
+                                                      borderRadius: 30,
+                                                      borderWidth: 1,
+                                                      buttonSize: 40,
+                                                      icon: Icon(
+                                                        Icons.edit,
+                                                        color: FlutterFlowTheme
+                                                            .primaryColor,
+                                                        size: 20,
+                                                      ),
+                                                      onPressed: () async {
+                                                        await showModalBottomSheet(
+                                                          isScrollControlled:
+                                                              true,
+                                                          context: context,
+                                                          builder: (context) {
+                                                            return Padding(
+                                                              padding: MediaQuery
+                                                                      .of(context)
+                                                                  .viewInsets,
+                                                              child: Container(
+                                                                height: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .height *
+                                                                    0.4,
+                                                                child:
+                                                                    QuantityAdderWidget(
+                                                                  name:
+                                                                      bookingItem,
+                                                                ),
+                                                              ),
+                                                            );
+                                                          },
+                                                        );
+                                                      },
+                                                    ),
+                                                  ],
                                                 ),
-                                              );
-                                            },
-                                          );
-                                        },
-                                        text: 'set qty',
-                                        options: FFButtonOptions(
-                                          width: 80,
-                                          height: 40,
-                                          color: FlutterFlowTheme.primaryColor,
-                                          textStyle: FlutterFlowTheme.subtitle2
-                                              .override(
-                                            fontFamily: 'Poppins',
-                                            color: Colors.white,
+                                              ),
+                                            ),
                                           ),
-                                          borderSide: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 1,
-                                          ),
-                                          borderRadius: 12,
-                                        ),
+                                        ],
                                       ),
-                                    ],
+                                    ),
                                   ),
                                 ),
                               ),
@@ -619,36 +893,96 @@ class _VisitedDoctorDetailSheetWidgetState
                   ),
                 ],
               ),
-              FFButtonWidget(
-                onPressed: () async {
-                  await actions.finishDoctorDetail(
-                    FFAppState().connectedDoctorSample.toList(),
-                    FFAppState().selectedDoctors.toList(),
-                    FFAppState().connectedDoctorPop.toList(),
-                    FFAppState().selectedDoctors.toList(),
-                    FFAppState().connectedDoctorSample.toList(),
-                    FFAppState().selectedDoctors.toList(),
-                  );
-                  Navigator.pop(context);
-                },
-                text: 'Finish',
-                icon: Icon(
-                  Icons.check_circle,
-                  size: 15,
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 30),
+                child: FFButtonWidget(
+                  onPressed: () async {
+                    await actions.commitDoctors();
+                  },
+                  text: 'Lock Bookings',
+                  options: FFButtonOptions(
+                    width: 130,
+                    height: 40,
+                    color: FlutterFlowTheme.primaryColor,
+                    textStyle: FlutterFlowTheme.subtitle2.override(
+                      fontFamily: 'Poppins',
+                      color: Colors.white,
+                    ),
+                    borderSide: BorderSide(
+                      color: Colors.transparent,
+                      width: 1,
+                    ),
+                    borderRadius: 12,
+                  ),
                 ),
-                options: FFButtonOptions(
-                  width: 150,
-                  height: 40,
-                  color: FlutterFlowTheme.secondaryColor,
-                  textStyle: FlutterFlowTheme.subtitle2.override(
-                    fontFamily: 'Poppins',
-                    color: Colors.white,
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                child: FFButtonWidget(
+                  onPressed: () async {
+                    await showDialog(
+                      context: context,
+                      builder: (alertDialogContext) {
+                        return AlertDialog(
+                          title: Text('Commit all entries with quantity?'),
+                          content: Text(
+                              'All data for this doctor will be permanently logged!'),
+                          actions: [
+                            TextButton(
+                              onPressed: () =>
+                                  Navigator.pop(alertDialogContext),
+                              child: Text('Cancel'),
+                            ),
+                            TextButton(
+                              onPressed: () async {
+                                Navigator.pop(alertDialogContext);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      'Commited all doctor data for ${widget.currentDoctor}',
+                                      style: TextStyle(),
+                                    ),
+                                    duration: Duration(milliseconds: 2750),
+                                    backgroundColor: Color(0x00000000),
+                                  ),
+                                );
+                                ;
+                              },
+                              child: Text('Confirm'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                    await actions.finishDoctorDetail(
+                      FFAppState().connectedDoctorSample.toList(),
+                      FFAppState().selectedDoctors.toList(),
+                      FFAppState().connectedDoctorPop.toList(),
+                      FFAppState().selectedDoctors.toList(),
+                      FFAppState().connectedDoctorSample.toList(),
+                      FFAppState().selectedDoctors.toList(),
+                    );
+                    Navigator.pop(context);
+                  },
+                  text: 'Finish',
+                  icon: Icon(
+                    Icons.check_circle,
+                    size: 15,
                   ),
-                  borderSide: BorderSide(
-                    color: Colors.transparent,
-                    width: 1,
+                  options: FFButtonOptions(
+                    width: 150,
+                    height: 40,
+                    color: FlutterFlowTheme.secondaryColor,
+                    textStyle: FlutterFlowTheme.subtitle2.override(
+                      fontFamily: 'Poppins',
+                      color: Colors.white,
+                    ),
+                    borderSide: BorderSide(
+                      color: Colors.transparent,
+                      width: 1,
+                    ),
+                    borderRadius: 20,
                   ),
-                  borderRadius: 20,
                 ),
               ),
             ],
