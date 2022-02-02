@@ -27,6 +27,7 @@ class _VisitedChemistDetailSheetWidgetState
     extends State<VisitedChemistDetailSheetWidget> {
   String pOPDropdownValue1;
   String pOPDropdownValue2;
+  String pOPDropdownValue3;
 
   @override
   Widget build(BuildContext context) {
@@ -693,6 +694,87 @@ class _VisitedChemistDetailSheetWidgetState
                       ),
                       borderRadius: 12,
                     ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 50),
+                  child: FutureBuilder<ApiCallResponse>(
+                    future: GetDoctorStockistsCall.call(
+                      id: 'doctor_id_here',
+                    ),
+                    builder: (context, snapshot) {
+                      // Customize what your widget looks like when it's loading.
+                      if (!snapshot.hasData) {
+                        return Center(
+                          child: SizedBox(
+                            width: 50,
+                            height: 50,
+                            child: CircularProgressIndicator(
+                              color: FlutterFlowTheme.primaryColor,
+                            ),
+                          ),
+                        );
+                      }
+                      final columnGetDoctorStockistsResponse = snapshot.data;
+                      return Column(
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(10, 30, 0, 0),
+                            child: Text(
+                              'Select Stockist',
+                              style: FlutterFlowTheme.bodyText1,
+                            ),
+                          ),
+                          Padding(
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(0, 10, 0, 20),
+                            child: Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                FlutterFlowDropDown(
+                                  options: GetDoctorStockistsCall.names(
+                                    (columnGetDoctorStockistsResponse
+                                            ?.jsonBody ??
+                                        ''),
+                                  )
+                                      .map<String>((s) => s.toString())
+                                      .toList()
+                                      .toList(),
+                                  onChanged: (val) =>
+                                      setState(() => pOPDropdownValue3 = val),
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.93,
+                                  height: 50,
+                                  textStyle:
+                                      FlutterFlowTheme.bodyText1.override(
+                                    fontFamily: 'Poppins',
+                                    color: Colors.black,
+                                  ),
+                                  hintText: 'Please select...',
+                                  icon: Icon(
+                                    Icons.keyboard_arrow_down,
+                                    color: Color(0xFF2143A0),
+                                    size: 15,
+                                  ),
+                                  fillColor: Colors.white,
+                                  elevation: 2,
+                                  borderColor: Color(0xFF2143A0),
+                                  borderWidth: 1,
+                                  borderRadius: 25,
+                                  margin: EdgeInsetsDirectional.fromSTEB(
+                                      12, 4, 12, 4),
+                                  hidesUnderline: true,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      );
+                    },
                   ),
                 ),
                 FFButtonWidget(

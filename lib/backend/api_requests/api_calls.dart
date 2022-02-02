@@ -91,28 +91,6 @@ class GetARCsCall {
       );
 }
 
-class GetStockistsCall {
-  static Future<ApiCallResponse> call({
-    String id = '',
-  }) {
-    return ApiManager.instance.makeApiCall(
-      callName: 'getStockists',
-      apiUrl: 'http://127.0.0.1:8000/api/msos/stockists',
-      callType: ApiCallType.GET,
-      headers: {},
-      params: {
-        'id': id,
-      },
-      returnBody: true,
-    );
-  }
-
-  static dynamic names(dynamic response) => getJsonField(
-        response,
-        r'''..name''',
-      );
-}
-
 class GetSamplesCall {
   static Future<ApiCallResponse> call() {
     return ApiManager.instance.makeApiCall(
@@ -206,4 +184,70 @@ class LogReportCall {
       returnBody: true,
     );
   }
+}
+
+class GetDoctorStockistsCall {
+  static Future<ApiCallResponse> call({
+    String id = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getDoctorStockists',
+      apiUrl: 'http://127.0.0.1:8000/api/doctors/connected_stockists',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'id': id,
+      },
+      returnBody: true,
+    );
+  }
+
+  static dynamic names(dynamic response) => getJsonField(
+        response,
+        r'''$[0:].name''',
+      );
+}
+
+class GetChemistStockistsCall {
+  static Future<ApiCallResponse> call({
+    String id = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getChemistStockists',
+      apiUrl: 'http://127.0.0.1:8000/api/chemists/connected_stockists',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'id': id,
+      },
+      returnBody: true,
+    );
+  }
+
+  static dynamic names(dynamic response) => getJsonField(
+        response,
+        r'''$[0:].name''',
+      );
+}
+
+class GetARCStockistsCall {
+  static Future<ApiCallResponse> call({
+    String id = '',
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getARCStockists',
+      apiUrl: 'http://127.0.0.1:8000/api/arcs/connected_stockists',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'id': id,
+      },
+      returnBody: true,
+    );
+  }
+
+  static dynamic names(dynamic response) => getJsonField(
+        response,
+        r'''$[0:].name''',
+      );
 }
