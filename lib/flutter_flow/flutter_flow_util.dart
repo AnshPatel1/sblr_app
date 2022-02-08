@@ -7,6 +7,8 @@ import 'package:json_path/json_path.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:url_launcher/url_launcher.dart';
 
+import '../main.dart';
+
 import 'lat_lng.dart';
 
 export '../app_state.dart';
@@ -149,6 +151,9 @@ bool responsiveVisibility({
     return desktop;
   }
 }
+
+void setAppLanguage(BuildContext context, String language) =>
+    MyApp.of(context).setLocale(Locale(language, ''));
 
 void showSnackbar(
   BuildContext context,

@@ -43,7 +43,7 @@ class GetDoctorsCall {
 
   static dynamic names(dynamic response) => getJsonField(
         response,
-        r'''..name''',
+        r'''$..name''',
       );
 }
 
@@ -65,7 +65,7 @@ class GetChemistsCall {
 
   static dynamic name(dynamic response) => getJsonField(
         response,
-        r'''..name''',
+        r'''$..name''',
       );
 }
 
@@ -87,7 +87,7 @@ class GetARCsCall {
 
   static dynamic arcs(dynamic response) => getJsonField(
         response,
-        r'''..name''',
+        r'''$..name''',
       );
 }
 
@@ -105,7 +105,7 @@ class GetSamplesCall {
 
   static dynamic names(dynamic response) => getJsonField(
         response,
-        r'''..name''',
+        r'''$..name''',
       );
 }
 
@@ -123,7 +123,7 @@ class GetPOPsCall {
 
   static dynamic names(dynamic response) => getJsonField(
         response,
-        r'''..name''',
+        r'''$..name''',
       );
 }
 
@@ -141,19 +141,19 @@ class GetProductsCall {
 
   static dynamic names(dynamic response) => getJsonField(
         response,
-        r'''$[0:]name''',
+        r'''$[0:].name''',
       );
   static dynamic id(dynamic response) => getJsonField(
         response,
-        r'''$[0:]pk''',
+        r'''$[0:].pk''',
       );
   static dynamic type(dynamic response) => getJsonField(
         response,
-        r'''$[0:]type''',
+        r'''$[0:].type''',
       );
   static dynamic size(dynamic response) => getJsonField(
         response,
-        r'''$[0:]size''',
+        r'''$[0:].size''',
       );
 }
 
@@ -250,4 +250,21 @@ class GetARCStockistsCall {
         response,
         r'''$[0:].name''',
       );
+}
+
+class GetRecentSBLRsCall {
+  static Future<ApiCallResponse> call({
+    int id,
+  }) {
+    return ApiManager.instance.makeApiCall(
+      callName: 'getRecentSBLRs',
+      apiUrl: 'http://127.0.0.1:8000/sblrs/recent',
+      callType: ApiCallType.GET,
+      headers: {},
+      params: {
+        'id': id,
+      },
+      returnBody: true,
+    );
+  }
 }

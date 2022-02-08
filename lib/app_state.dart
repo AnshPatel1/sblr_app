@@ -15,6 +15,8 @@ class FFAppState {
   Future initializePersistedState() async {
     prefs = await SharedPreferences.getInstance();
     _persistedExample = prefs.getStringList('ff_persistedExample') ?? [];
+    _password = prefs.getString('ff_password') ?? _password;
+    _username = prefs.getString('ff_username') ?? _username;
   }
 
   SharedPreferences prefs;
@@ -67,6 +69,20 @@ class FFAppState {
   String summaryText = '';
 
   int totalBooking = 0;
+
+  String _password = '';
+  String get password => _password;
+  set password(String _value) {
+    _password = _value;
+    prefs.setString('ff_password', _value);
+  }
+
+  String _username = '';
+  String get username => _username;
+  set username(String _value) {
+    _username = _value;
+    prefs.setString('ff_username', _value);
+  }
 }
 
 LatLng _latLngFromString(String val) {

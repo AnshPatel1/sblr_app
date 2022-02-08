@@ -125,7 +125,7 @@ class _Page1WidgetState extends State<Page1Widget> {
                     child: Text(
                       getJsonField(
                         (page1LoginAuthResponse?.jsonBody ?? ''),
-                        r'''$name''',
+                        r'''$.name''',
                       ).toString().maybeHandleOverflow(maxChars: 500),
                       style: FlutterFlowTheme.title3.override(
                         fontFamily: 'Poppins',

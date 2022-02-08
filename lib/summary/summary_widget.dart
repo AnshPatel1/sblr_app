@@ -175,7 +175,7 @@ class _SummaryWidgetState extends State<SummaryWidget> {
                                               (summaryLoginAuthResponse
                                                       ?.jsonBody ??
                                                   ''),
-                                              r'''$name''',
+                                              r'''$.name''',
                                             ).toString(),
                                             textAlign: TextAlign.end,
                                             style: FlutterFlowTheme.subtitle1
@@ -309,7 +309,7 @@ class _SummaryWidgetState extends State<SummaryWidget> {
                                                           (summaryLoginAuthResponse
                                                                   ?.jsonBody ??
                                                               ''),
-                                                          r'''$pk''',
+                                                          r'''$.pk''',
                                                         ).toString(),
                                                         textAlign:
                                                             TextAlign.start,

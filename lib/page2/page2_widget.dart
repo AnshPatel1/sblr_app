@@ -143,7 +143,7 @@ class _Page2WidgetState extends State<Page2Widget> {
                                   future: GetDoctorsCall.call(
                                     id: getJsonField(
                                       (page2LoginAuthResponse?.jsonBody ?? ''),
-                                      r'''$pk''',
+                                      r'''$.pk''',
                                     ).toString(),
                                   ),
                                   builder: (context, snapshot) {
@@ -163,10 +163,9 @@ class _Page2WidgetState extends State<Page2Widget> {
                                     final dropDownGetDoctorsResponse =
                                         snapshot.data;
                                     return FlutterFlowDropDown(
-                                      options: getJsonField(
+                                      options: GetDoctorsCall.names(
                                         (dropDownGetDoctorsResponse?.jsonBody ??
                                             ''),
-                                        r'''..name''',
                                       )
                                           .map<String>((s) => s.toString())
                                           .toList()

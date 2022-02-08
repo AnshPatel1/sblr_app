@@ -2,7 +2,7 @@ import '../backend/api_requests/api_calls.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
-import '../page1/page1_widget.dart';
+import '../home_page/home_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -61,15 +61,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               Align(
                                 alignment: AlignmentDirectional(0, 0),
                                 child: TextFormField(
+                                  onFieldSubmitted: (_) async {
+                                    setState(() => FFAppState().username =
+                                        textController1.text);
+                                  },
                                   controller: textController1,
                                   obscureText: false,
                                   decoration: InputDecoration(
                                     hintText: 'Username',
-                                    hintStyle: GoogleFonts.getFont(
-                                      'Lato',
-                                      color: Colors.white,
-                                      fontSize: 18,
-                                    ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0xFF3C2452),
@@ -120,15 +119,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               Align(
                                 alignment: AlignmentDirectional(0, 0),
                                 child: TextFormField(
+                                  onFieldSubmitted: (_) async {
+                                    setState(() => FFAppState().password =
+                                        textController2.text);
+                                  },
                                   controller: textController2,
                                   obscureText: !passwordVisibility,
                                   decoration: InputDecoration(
                                     hintText: 'Password',
-                                    hintStyle: GoogleFonts.getFont(
-                                      'Lato',
-                                      color: Colors.white,
-                                      fontSize: 18,
-                                    ),
                                     enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                         color: Color(0xFF3C2452),
@@ -198,7 +196,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   await Navigator.pushAndRemoveUntil(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => Page1Widget(
+                                      builder: (context) => HomePageWidget(
                                         username: textController1.text,
                                         password: textController2.text,
                                       ),
@@ -232,7 +230,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   setState(
                                       () => FFAppState().msoID = getJsonField(
                                             (apiCallOutput?.jsonBody ?? ''),
-                                            r'''$pk''',
+                                            r'''$.pk''',
                                           ).toString());
                                 } else {
                                   return;

@@ -73,10 +73,6 @@ class _QuantityAdderWidgetState extends State<QuantityAdderWidget> {
                     obscureText: false,
                     decoration: InputDecoration(
                       hintText: 'Enter quantity',
-                      hintStyle: FlutterFlowTheme.bodyText1.override(
-                        fontFamily: 'Poppins',
-                        color: Color(0xFFD3D3D3),
-                      ),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
                           color: Color(0xFF2143A0),

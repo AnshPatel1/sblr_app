@@ -135,7 +135,7 @@ class _Page4WidgetState extends State<Page4Widget> {
                           future: GetARCsCall.call(
                             id: getJsonField(
                               (page4LoginAuthResponse?.jsonBody ?? ''),
-                              r'''$pk''',
+                              r'''$.pk''',
                             ).toString(),
                           ),
                           builder: (context, snapshot) {
@@ -165,7 +165,7 @@ class _Page4WidgetState extends State<Page4Widget> {
                                         id: getJsonField(
                                           (page4LoginAuthResponse?.jsonBody ??
                                               ''),
-                                          r'''$pk''',
+                                          r'''$.pk''',
                                         ).toString(),
                                       ),
                                       builder: (context, snapshot) {

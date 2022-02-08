@@ -135,7 +135,7 @@ class _Page3WidgetState extends State<Page3Widget> {
                           future: GetChemistsCall.call(
                             id: getJsonField(
                               (page3LoginAuthResponse?.jsonBody ?? ''),
-                              r'''$pk''',
+                              r'''$.pk''',
                             ).toString(),
                           ),
                           builder: (context, snapshot) {
@@ -165,7 +165,7 @@ class _Page3WidgetState extends State<Page3Widget> {
                                         id: getJsonField(
                                           (page3LoginAuthResponse?.jsonBody ??
                                               ''),
-                                          r'''$pk''',
+                                          r'''$.pk''',
                                         ).toString(),
                                       ),
                                       builder: (context, snapshot) {
