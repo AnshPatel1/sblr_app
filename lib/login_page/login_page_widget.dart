@@ -228,11 +228,10 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                 );
                                 if (apiCallOutput1.succeeded) {
                                   setState(
-                                      () => FFAppState().msoID = getJsonField(
-                                            (apiCallOutput?.jsonBody ?? ''),
-                                            r'''$.pk''',
-                                          ).toString());
+                                      () => FFAppState().isLoggedIn = true);
                                 } else {
+                                  setState(
+                                      () => FFAppState().isLoggedIn = false);
                                   return;
                                 }
 
