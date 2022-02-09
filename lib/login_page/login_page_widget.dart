@@ -230,8 +230,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   setState(
                                       () => FFAppState().isLoggedIn = true);
                                 } else {
-                                  setState(
-                                      () => FFAppState().isLoggedIn = false);
                                   return;
                                 }
 
