@@ -17,6 +17,7 @@ class FFAppState {
     _persistedExample = prefs.getStringList('ff_persistedExample') ?? [];
     _password = prefs.getString('ff_password') ?? _password;
     _username = prefs.getString('ff_username') ?? _username;
+    _isLoggedIn = prefs.getBool('ff_isLoggedIn') ?? _isLoggedIn;
   }
 
   SharedPreferences prefs;
@@ -82,6 +83,13 @@ class FFAppState {
   set username(String _value) {
     _username = _value;
     prefs.setString('ff_username', _value);
+  }
+
+  bool _isLoggedIn = false;
+  bool get isLoggedIn => _isLoggedIn;
+  set isLoggedIn(bool _value) {
+    _isLoggedIn = _value;
+    prefs.setBool('ff_isLoggedIn', _value);
   }
 }
 
