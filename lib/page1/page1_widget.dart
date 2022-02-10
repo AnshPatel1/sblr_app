@@ -2,6 +2,7 @@ import '../backend/api_requests/api_calls.dart';
 import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
+import '../main.dart';
 import '../page2/page2_widget.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
@@ -76,14 +77,15 @@ class _Page1WidgetState extends State<Page1Widget> {
                   size: 30,
                 ),
                 onPressed: () async {
-                  await Navigator.push(
+                  await Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(
-                      builder: (context) => Page2Widget(
-                        username: widget.username,
-                        password: widget.password,
-                      ),
+                    PageTransition(
+                      type: PageTransitionType.topToBottom,
+                      duration: Duration(milliseconds: 300),
+                      reverseDuration: Duration(milliseconds: 300),
+                      child: NavBarPage(initialPage: 'homePage'),
                     ),
+                    (r) => false,
                   );
                 },
               ),
